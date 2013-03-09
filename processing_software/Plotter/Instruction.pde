@@ -1,15 +1,13 @@
-package com.tinkerlog.kritzler;
+class Instruction {
 
-public class Instruction {
+  static final int MOVE_ABS = 0;
+  static final int MOVE_REL = 1;
+  static final int LINE_ABS = 2;
+  static final int LINE_REL = 3;
 
-  public static final int MOVE_ABS = 0;
-  public static final int MOVE_REL = 1;
-  public static final int LINE_ABS = 2;
-  public static final int LINE_REL = 3;
-
-  public float x;
-  public float y;
-  public int type;
+  float x;
+  float y;
+  int type;
 
   /**
    * Creates a new Instruction object
@@ -21,7 +19,7 @@ public class Instruction {
    * @param y
    *            Y coordinate
    */
-  public Instruction(int type, float x, float y) {
+  Instruction(int type, float x, float y) {
     this.type = type;
     this.x = x;
     this.y = y;
@@ -32,7 +30,7 @@ public class Instruction {
    * 
    * @see java.lang.Object#toString()
    */
-  public String toString() {
+  String toString() {
     String commandChar = "";
 
     switch (type) {
@@ -44,7 +42,10 @@ public class Instruction {
       break;
     }
 
+    println(commandChar);
+
     return commandChar + " " + x + " " + y;
   }
 
 }
+

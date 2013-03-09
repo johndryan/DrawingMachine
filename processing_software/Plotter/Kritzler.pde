@@ -1,20 +1,13 @@
-package com.tinkerlog.kritzler;
+class Kritzler {
 
-import java.util.List;
+  Serial port;
+  List<Instruction> instructions;
+  int currentInst;
+  StringBuilder buf = new StringBuilder();
 
-import processing.core.PApplet;
-import processing.serial.Serial;
-
-public class Kritzler {
-
-  private Serial port;
-  private List<Instruction> instructions;
-  private int currentInst;
-  private StringBuilder buf = new StringBuilder();
-
-  private float tx, ty;
-  private float scale;
-  private boolean finished = true;
+  float tx, ty;
+  float scale;
+  boolean finished = true;
 
   /**
    * Constructor, creates a new Kritzler object
@@ -24,7 +17,7 @@ public class Kritzler {
    * @param port
    *            Serial port set up in main sketch
    */
-  public Kritzler(PApplet parent, Serial port) {
+  Kritzler(PApplet parent, Serial port) {
     this.port = port;
   }
 
@@ -34,7 +27,7 @@ public class Kritzler {
    * @param instructions
    *            New set of Instructions
    */
-  public void setInstructions(List<Instruction> instructions) {
+  void setInstructions(List<Instruction> instructions) {
     this.instructions = instructions;
     this.currentInst = 0;
     this.finished = false;
@@ -60,7 +53,7 @@ public class Kritzler {
    * @param y
    *            Y offset
    */
-  public void translate(float x, float y) {
+  void translate(float x, float y) {
     this.tx = x;
     this.ty = y;
   }
@@ -71,7 +64,7 @@ public class Kritzler {
    * @param s
    *            Scale factor (1 = no scaling)
    */
-  public void setScale(float s) {
+  void setScale(float s) {
     this.scale = s;
   }
 
@@ -87,7 +80,7 @@ public class Kritzler {
   /**
    * Check the Serial port for new messages
    */
-  public void checkSerial() {
+  void checkSerial() {
     if (port != null && port.available() > 0)
       processSerial();
   }
@@ -95,7 +88,7 @@ public class Kritzler {
   /**
    * Process any incoming Serial messages coming from the Arduino
    */
-  public void processSerial() {
+  void processSerial() {
     while (port.available() > 0) {
       int c = port.read();
 
@@ -133,7 +126,7 @@ public class Kritzler {
    * @param message
    *            Message sent from Arduino
    */
-  public void processMessage(String message) {
+  void processMessage(String message) {
     if (message.equals("OK")) {
       System.out.println("received ok");
       if (instructions != null) {
@@ -146,6 +139,11 @@ public class Kritzler {
           sendInstruction(inst);
         }
         if (currentInst >= instructions.size()) {
+          //Move to Origin (JDR)
+          System.out.println("FINISHED: --> RETURNING TO HOME <--");
+          Instruction inst = new Instruction(Instruction.MOVE_ABS, 6425, 6425);
+          sendInstruction(inst);
+          
           finished = true;
           currentInst--;  // reset to the last position
         }
@@ -162,7 +160,7 @@ public class Kritzler {
    * @param i
    *            Instruction to send
    */
-  public void sendInstruction(Instruction i) {
+  void sendInstruction(Instruction i) {
     // Abort if Serial port is unavailable
     if (port == null)
       return;
@@ -187,8 +185,9 @@ public class Kritzler {
     port.write(msg);
   }
   
-  public int getCurrentInstructionIndex() {
+  int getCurrentInstructionIndex() {
     return currentInst;
   }
 
 }
+
