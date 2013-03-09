@@ -48,35 +48,36 @@
 #include <stdlib.h>
 
 
-// distance between both motors (axis) 150 cm
-#define AXIS_DISTANCE_X 15000
-#define AXIS_DISTANCE_Y 15000
+// distance between both motors (axis) 150 cm // 128.5cm
+#define AXIS_DISTANCE_X 12850
+#define AXIS_DISTANCE_Y 12850
 
 // starting position
-// a = b = 10607 --> 1060.7mm
-// m2s = 0.7853982
+// a = b = 10607 --> 1060.7mm // 910mm
+// m2s = 0.7853982 // 0.03809177875
 
-#define START_X 7500
-#define START_Y 7500
-#define MIN_X 4000
-#define MAX_X 11000
-#define MIN_Y 4000
-#define MAX_Y 12000
+#define START_X 6425 //7500
+#define START_Y 6425 //7500
+#define MIN_X 1500  // 3000
+#define MAX_X 11350 // 9850
+#define MIN_Y 2500  // 3000
+#define MAX_Y 11350 // 9850
 
-// pulley radius 10mm
+// pulley radius 10mm // 19.4mm dia = 9.7mm radius (0.764" diameter)
 //#define PULLEY_R 100
-#define PULLEY_R 96
+#define PULLEY_R 97
 #define PI 3.14159
-// circumference 2*PI*r = 62.8 mm 
+// circumference 2*PI*r = 62.8 mm // 60.9mm
 
-// quarter step, 800 steps per rotation
-#define STEPS_PER_ROT 800
+// quarter step, 800 steps per rotation // I'm doing 1/8th steps
+// #define STEPS_PER_ROT 800
+#define STEPS_PER_ROT 1600
 
 // pen states
 #define PEN_UP 0
 #define PEN_DOWN 1
-#define PEN_UP_POS 55
-#define PEN_DOWN_POS 90
+#define PEN_UP_POS 75
+#define PEN_DOWN_POS 10
 // delay to wait for the pen to go up or down
 #define PEN_DELAY 1000
 
@@ -101,16 +102,16 @@
 #define CMD_CHAR_ON 'O'
 
 // pin defines
-#define MS1_PIN 2
-#define ENABLE_PIN 3
-#define MS3_PIN 4
-#define SERVO_PIN 5
-#define STEP_PIN_M1 6
-#define DIR_PIN_M1 7
-#define STEP_PIN_M2 8
-#define DIR_PIN_M2 9
+#define MS1_PIN 6
+#define ENABLE_PIN 7
+#define MS3_PIN 8
+#define SERVO_PIN 9
+#define STEP_PIN_M1 3
+#define DIR_PIN_M1 2
+#define STEP_PIN_M2 5
+#define DIR_PIN_M2 4
 #define LED_PIN1 10
-#define LED_PIN2 14
+#define LED_PIN2 12
 
 #define MAX_BUFFER_SIZE 50
 
