@@ -21,8 +21,8 @@ String BUFFER_ACC_PATH = "buffer_acc/";
 String BUFFER_DONE_PATH = "buffer_done/";
 String BUFFER_DENIED_PATH = "buffer_denied/";
     
-int MAX_PLOTTER_X = 9850; //7000;
-int MAX_PLOTTER_Y = 8850; //8000;
+int MAX_PLOTTER_X = 13940; //7000;
+int MAX_PLOTTER_Y = 13500; //8000;
   
   //private static final int MAX_SCREEN_X = 800;
 int MAX_SCREEN_Y = 700; 
@@ -30,10 +30,10 @@ int MENU_X = 190;
   
 int SCREEN_PADDING = 20;
   
-int START_X = 1500; //2000 //4000
-int START_Y = 2500; //2000 //4000
-int HOME_X = 6425; //7500
-int HOME_Y = 6425; //7500
+int START_X = 6000; //2000 //4000
+int START_Y = 3500; //2000 //4000
+int HOME_X = 9620; //7500
+int HOME_Y = 9620; //7500
   
 int STATE_START = 1;
 int STATE_WAITING = 2;
@@ -488,6 +488,10 @@ void draw() {
   }
   
   popMatrix();
+  
+  noFill();
+  stroke(0,255,0);
+  rect(245,150,280,360);
 }
 
 /**

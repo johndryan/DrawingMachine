@@ -139,10 +139,6 @@ class Kritzler {
           sendInstruction(inst);
         }
         if (currentInst >= instructions.size()) {
-          //Move to Origin (JDR)
-          System.out.println("FINISHED: --> RETURNING TO HOME <--");
-          Instruction inst = new Instruction(Instruction.MOVE_ABS, 6425, 6425);
-          sendInstruction(inst);
           
           finished = true;
           currentInst--;  // reset to the last position
